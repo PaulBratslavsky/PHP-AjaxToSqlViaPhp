@@ -1,22 +1,20 @@
 <?php 
 include 'database.php';
 
-header('Content-type: application/json');
+//Fetch rows from actor table
+$result = $db->query("SELECT * FROM users");
 
-$myArray = array(
-  "uesr1"=>[
-    "firstName"=>"Paul",
-    "lastName"=>"Brats",
-    "age"=>39
-  ],
-  "uesr2"=>[
-    "firstName"=>"Marissa",
-    "lastName"=>"Brats",
-    "age"=>19
-  ]
-);
+//Initialize array variable
+ $dbdata = array();
 
-echo json_encode($myArray);
+//Fetch into associative array
+ while ( $row = $result->fetch_assoc())  {
+ $dbdata[]=$row;
+ }
+
+//Print array in JSON format
+echo json_encode($dbdata);
+
 
 ?>
 
